@@ -11,32 +11,47 @@ document.body.appendChild(ul);
 
 let numbers = [];
 
-function generateRandomNumbers(number) {
-    for (let index = 0; index < 5; index++) {
-        const li = document.createElement('li');
-        let number = numbers[index];
-        number = Math.floor(Math.random() * 100 + 1);
-        li.innerHTML = number;
-        ul.appendChild(li)
-        console.log(number);
-    }
+function generateRandomNumbers() {
+  for (let index = 0; index < 5; index++) {
+    const li = document.createElement('li');
+    let number = Math.floor(Math.random() * 100 + 1);
+    li.innerHTML = number;
+    ul.appendChild(li);
+    numbers.push(number);
+    console.log(number);
+  }
 }
-generateRandomNumbers(numbers);
 
+generateRandomNumbers();
 
-const timer = setTimeout(function(){
-    ul.style.display = ('none');
-}, 1000)
+const timer = setTimeout(function() {
+  ul.style.display = 'none';
+}, 5000);
 
-const submit = document.querySelector('button');
-submit.addEventListener ('click', function(){
-    const userNumber = document.querySelector('input').valueAsNumber;
-    console.log(userNumber);
-
-    if (userNumber == numbers) {
-        alert('Hai indovinato tutti i numeri')
-    } else {
-        alert('Purtroppo i numeri non sono corretti, riprova');
-        document.location.reload();
+const send = document.querySelector('button');
+send.addEventListener('click', function() {
+  const userArray = [];
+  const inputs = document.querySelectorAll('input');
+  for (let index = 0; index < inputs.length; index++) {
+    userArray.push(inputs[index].valueAsNumber);
+  }
+  console.log(userArray);
+  
+  let isMatch = true;
+  for (let index = 0; index < userArray.length; index++) {
+    if (!numbers.includes(userArray[index])) {
+      isMatch = false;
+      break;
     }
-})
+  }
+  
+  if (isMatch) {
+    alert('Complimenti! I numeri inseriti corrispondono a quelli generati.');
+  } else {
+    alert('Mi dispiace, i numeri inseriti sono sbagliati. Riprova!');
+    document.location.reload();
+  }
+});
+
+
+
