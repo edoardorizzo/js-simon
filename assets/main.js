@@ -8,8 +8,8 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 
 const ul = document.createElement('ul');
 document.body.appendChild(ul);
-let numbers = [];
 
+let numbers = [];
 for (let index = 0; index < 5; index++) {
     const li = document.createElement('li');
     let randomNumbers = numbers[index];
@@ -25,6 +25,14 @@ const timer = setTimeout(function(){
 
 const submit = document.querySelector('button');
 submit.addEventListener ('click', function(){
-    const userNumber = document.querySelector('input').value;
+    const userNumber = document.querySelector('input').valueAsNumber;
     console.log(userNumber);
+
+    if (userNumber == numbers) {
+        alert('Hai indovinato tutti i numeri')
+    } else {
+        alert('Purtroppo i numeri non sono corretti, riprova');
+        document.location.reload();
+    }
 })
+
