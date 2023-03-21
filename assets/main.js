@@ -10,14 +10,19 @@ const ul = document.createElement('ul');
 document.body.appendChild(ul);
 
 let numbers = [];
-for (let index = 0; index < 5; index++) {
-    const li = document.createElement('li');
-    let randomNumbers = numbers[index];
-    randomNumbers = Math.floor(Math.random() * 100 + 1);
-    li.innerHTML = randomNumbers;
-    ul.appendChild(li)
-    console.log(randomNumbers);
+
+function generateRandomNumbers(number) {
+    for (let index = 0; index < 5; index++) {
+        const li = document.createElement('li');
+        let number = numbers[index];
+        number = Math.floor(Math.random() * 100 + 1);
+        li.innerHTML = number;
+        ul.appendChild(li)
+        console.log(number);
+    }
 }
+generateRandomNumbers(numbers);
+
 
 const timer = setTimeout(function(){
     ul.style.display = ('none');
@@ -35,4 +40,3 @@ submit.addEventListener ('click', function(){
         document.location.reload();
     }
 })
-
