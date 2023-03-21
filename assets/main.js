@@ -5,13 +5,26 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 */
 
 //generare 5 numeri casuali e associarli ad un elemento in pagina
+
 const ul = document.createElement('ul');
+document.body.appendChild(ul);
 let numbers = [];
+
 for (let index = 0; index < 5; index++) {
     const li = document.createElement('li');
     let randomNumbers = numbers[index];
     randomNumbers = Math.floor(Math.random() * 100 + 1);
-    li.textContent = randomNumbers;
+    li.innerHTML = randomNumbers;
     ul.appendChild(li)
     console.log(randomNumbers);
 }
+
+const timer = setTimeout(function(){
+    ul.style.display = ('none');
+}, 1000)
+
+const submit = document.querySelector('button');
+submit.addEventListener ('click', function(){
+    const userNumber = document.querySelector('input').value;
+    console.log(userNumber);
+})
